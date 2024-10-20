@@ -1,4 +1,4 @@
-package com.reinaldyrafli.code.orangecatcoffee.Repositories.Models
+package com.reinaldyrafli.code.orangecatcoffee.repositories.models
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
@@ -8,7 +8,7 @@ import java.time.Instant
 
 @Table("products")
 data class Products(
-    @Id val id: Int,
+    @Id val id: Int? = null,
     val name: String,
     val price: BigDecimal,
     val description: String? = null,

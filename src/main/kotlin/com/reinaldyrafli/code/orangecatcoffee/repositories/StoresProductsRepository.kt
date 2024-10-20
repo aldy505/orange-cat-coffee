@@ -1,6 +1,6 @@
-package com.reinaldyrafli.code.orangecatcoffee.Repositories
+package com.reinaldyrafli.code.orangecatcoffee.repositories
 
-import com.reinaldyrafli.code.orangecatcoffee.Repositories.Models.StoresProducts
+import com.reinaldyrafli.code.orangecatcoffee.repositories.models.StoresProducts
 import org.springframework.data.jdbc.repository.query.Query
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param

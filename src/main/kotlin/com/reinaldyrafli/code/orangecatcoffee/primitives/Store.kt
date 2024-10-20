@@ -1,4 +1,4 @@
-package com.reinaldyrafli.code.orangecatcoffee.Controllers.DTO
+package com.reinaldyrafli.code.orangecatcoffee.primitives
 
 data class Store(
     val id: Int,
@@ -8,5 +8,5 @@ data class Store(
     val address: String? = null,
     val coordinatesLatitude: Double? = null,
     val coordinatesLongitude: Double? = null,
-    val disabled: Boolean? = false,
+    val disabled: Boolean = false,
 )

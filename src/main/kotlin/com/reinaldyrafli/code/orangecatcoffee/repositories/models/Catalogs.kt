@@ -1,20 +1,16 @@
-package com.reinaldyrafli.code.orangecatcoffee.Repositories.Models
+package com.reinaldyrafli.code.orangecatcoffee.repositories.models
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import java.time.Instant
-import java.time.LocalDateTime
 
-@Table("stores")
-data class Stores(
-    @Id val id: Int,
+@Table("catalogs")
+data class Catalogs(
+    @Id val id: Int? = null,
     val name: String,
     val description: String? = null,
     val image: String? = null,
-    val address: String? = null,
-    @Column("coordinates_latitude") val coordinatesLatitude: Double? = null,
-    @Column("coordinates_longitude") val coordinatesLongitude: Double? = null,
     val disabled: Boolean,
     @Column("created_at") val createdAt: Instant,
     @Column("created_by") val createdBy: String,

@@ -7,3 +7,14 @@ services:
       POSTGRES_DB: orange_cat_coffee
     ports:
       - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  smtp:
+    image: marlonb/mailcrab:latest
+    ports:
+      - "1080:1080"
+      - "1025:1025"

@@ -4,7 +4,8 @@ enum class InvalidCustomerReason {
     InvalidEmail,
     InvalidPassword,
     CustomerNotFound,
-    CustomerDisabled;
+    CustomerDisabled,
+    AlreadyRegistered;
 
     override fun toString(): String {
         return when (this) {
@@ -12,6 +13,7 @@ enum class InvalidCustomerReason {
             InvalidPassword -> "Invalid password"
             CustomerNotFound -> "Customer not found"
             CustomerDisabled -> "Customer disabled"
+            AlreadyRegistered -> "Already registered"
         }
     }
 }

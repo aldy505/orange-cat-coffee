@@ -9,4 +9,7 @@ import java.util.*
 interface CustomersRepository : CrudRepository<Customers, Int> {
     @Query("SELECT * FROM customers WHERE email = :email LIMIT 1")
     fun findByEmail(@Param("email") email: String): Optional<Customers>
+
+    @Query("SELECT EXISTS(SELECT * FROM customers WHERE email = :email)")
+    fun existsByEmail(@Param("email") email: String): Boolean
 }

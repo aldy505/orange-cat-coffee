@@ -11,10 +11,11 @@ import com.reinaldyrafli.code.orangecatcoffee.repositories.CustomersRepository
 import com.reinaldyrafli.code.orangecatcoffee.repositories.models.AuthLoginHistory
 import com.reinaldyrafli.code.orangecatcoffee.repositories.models.AuthSession
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder
+import org.springframework.stereotype.Service
 import java.time.Instant
 import java.util.*
 
-
+@Service
 class CustomerAuthenticationService(
     private val customersRepository: CustomersRepository,
     private val authLoginHistoryRepository: AuthLoginHistoryRepository,
@@ -36,12 +37,6 @@ class CustomerAuthenticationService(
 
         authLoginHistoryRepository.save(AuthLoginHistory(null, customer.id, ip, userAgent, Instant.now()))
         authSessionRepository.save(AuthSession(null, customer.id, token, tokenExpiry))
-        val customerGender: CustomerGender? = when (customer.gender) {
-            0 -> CustomerGender.Male
-            1 -> CustomerGender.Female
-            null -> null
-            else -> CustomerGender.Others
-        }
 
         return AuthorizedCustomer(
             Customer(
@@ -49,7 +44,7 @@ class CustomerAuthenticationService(
                 customer.email,
                 customer.password,
                 customer.fullName,
-                customerGender,
+                CustomerGender.fromInt(customer.gender),
                 customer.birthday,
                 customer.phoneNumber,
                 customer.profilePicture,
@@ -57,6 +52,29 @@ class CustomerAuthenticationService(
             ),
             token,
             tokenExpiry,
+        )
+    }
+
+    fun validateAccessToken(token: String): Customer? {
+        val authSession = authSessionRepository.findByToken(token).get()
+        if (authSession.id == null) return null
+
+        val expiresAt = authSession.expiresAt
+        if (expiresAt.isBefore(Instant.now())) return null
+
+        val customer = customersRepository.findById(authSession.customerId).get()
+        if (customer.id == null) return null
+
+        return Customer(
+            customer.id,
+            customer.email,
+            customer.password,
+            customer.fullName,
+            CustomerGender.fromInt(customer.gender),
+            customer.birthday,
+            customer.phoneNumber,
+            customer.profilePicture,
+            customer.disabled
         )
     }
 }

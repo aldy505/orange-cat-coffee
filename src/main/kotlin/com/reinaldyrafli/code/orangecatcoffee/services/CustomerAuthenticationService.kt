@@ -10,7 +10,7 @@ import com.reinaldyrafli.code.orangecatcoffee.repositories.AuthSessionRepository
 import com.reinaldyrafli.code.orangecatcoffee.repositories.CustomersRepository
 import com.reinaldyrafli.code.orangecatcoffee.repositories.models.AuthLoginHistory
 import com.reinaldyrafli.code.orangecatcoffee.repositories.models.AuthSession
-import org.springframework.security.crypto.argon2.Argon2PasswordEncoder
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.util.*
@@ -27,7 +27,7 @@ class CustomerAuthenticationService(
         if (customer.id == null) throw InvalidCustomerException(InvalidCustomerReason.CustomerNotFound)
 
         // Validate password
-        val passwordEncoder = Argon2PasswordEncoder(16, 32, 1, 60000, 10);
+        val passwordEncoder = BCryptPasswordEncoder(16)
         val encodedPassword: Boolean = passwordEncoder.matches(password, customer.password)
         if (!encodedPassword) throw InvalidCustomerException(InvalidCustomerReason.InvalidPassword)
 

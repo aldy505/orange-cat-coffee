@@ -18,5 +18,5 @@ enum class InvalidCustomerReason {
     }
 }
 
-class InvalidCustomerException(message: InvalidCustomerReason) : Exception(message.toString()) {
+class InvalidCustomerException(val reason: InvalidCustomerReason) : Exception(reason.toString()) {
 }

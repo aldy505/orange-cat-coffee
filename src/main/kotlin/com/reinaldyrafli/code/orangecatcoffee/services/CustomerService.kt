@@ -12,7 +12,7 @@ import com.reinaldyrafli.code.orangecatcoffee.repositories.EmailRepository
 import com.reinaldyrafli.code.orangecatcoffee.repositories.models.AuthLoginHistory
 import com.reinaldyrafli.code.orangecatcoffee.repositories.models.AuthSession
 import com.reinaldyrafli.code.orangecatcoffee.repositories.models.Customers
-import org.springframework.security.crypto.argon2.Argon2PasswordEncoder
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.util.*
@@ -33,7 +33,7 @@ class CustomerService(
     ): AuthorizedCustomer {
         if (customersRepository.existsByEmail(email)) throw InvalidCustomerException(InvalidCustomerReason.AlreadyRegistered)
 
-        val passwordEncoder = Argon2PasswordEncoder(16, 32, 1, 60000, 10)
+        val passwordEncoder = BCryptPasswordEncoder(16)
         val encodedPassword: String = passwordEncoder.encode(password)
         var customer = Customers(
             null,

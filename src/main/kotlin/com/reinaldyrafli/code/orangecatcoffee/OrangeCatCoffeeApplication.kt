@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class OrangeCatCoffeeApplication
 
 fun main(args: Array<String>) {
-	runApplication<OrangeCatCoffeeApplication>(*args)
+    runApplication<OrangeCatCoffeeApplication>(*args)
 }

@@ -44,7 +44,17 @@ class CustomerAuthenticationService(
         }
 
         return AuthorizedCustomer(
-            Customer(customer.id, customer.email, customer.password, customer.fullName, customerGender, customer.birthday, customer.phoneNumber, customer.profilePicture, customer.disabled),
+            Customer(
+                customer.id,
+                customer.email,
+                customer.password,
+                customer.fullName,
+                customerGender,
+                customer.birthday,
+                customer.phoneNumber,
+                customer.profilePicture,
+                customer.disabled
+            ),
             token,
             tokenExpiry,
         )

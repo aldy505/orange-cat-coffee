@@ -23,12 +23,40 @@ class InventoryService(
         val products = storesProducts.map { storeProduct -> productRepository.findById(storeProduct.productId).get() }
 
         return Inventory(
-            store = Store(storeId, store.name, store.description, store.image, store.address, store.coordinatesLatitude, store.coordinatesLongitude, store.disabled),
-            products = products.map { product -> Product(product.id!!, product.name, product.price, product.description, product.image, product.maximumOrder, product.disabled, product.catalogId) },
+            store = Store(
+                storeId,
+                store.name,
+                store.description,
+                store.image,
+                store.address,
+                store.coordinatesLatitude,
+                store.coordinatesLongitude,
+                store.disabled
+            ),
+            products = products.map { product ->
+                Product(
+                    product.id!!,
+                    product.name,
+                    product.price,
+                    product.description,
+                    product.image,
+                    product.maximumOrder,
+                    product.disabled,
+                    product.catalogId
+                )
+            },
         )
     }
 
     fun getCatalogs(): List<Catalog> {
-        return catalogsRepository.findAll().map { catalog -> Catalog(catalog.id!!, catalog.name, catalog.description, catalog.image, catalog.disabled) }
+        return catalogsRepository.findAll().map { catalog ->
+            Catalog(
+                catalog.id!!,
+                catalog.name,
+                catalog.description,
+                catalog.image,
+                catalog.disabled
+            )
+        }
     }
 }

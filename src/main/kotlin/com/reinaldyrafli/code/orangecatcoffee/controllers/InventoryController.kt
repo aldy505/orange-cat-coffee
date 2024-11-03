@@ -1,7 +1,7 @@
 package com.reinaldyrafli.code.orangecatcoffee.controllers
 
-import com.reinaldyrafli.code.orangecatcoffee.controllers.dto.CatalogProductResponse
-import com.reinaldyrafli.code.orangecatcoffee.controllers.dto.InventoryListResponse
+import com.reinaldyrafli.code.orangecatcoffee.controllers.dto.inventory.CatalogProductResponse
+import com.reinaldyrafli.code.orangecatcoffee.controllers.dto.inventory.InventoryListResponse
 import com.reinaldyrafli.code.orangecatcoffee.services.InventoryService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

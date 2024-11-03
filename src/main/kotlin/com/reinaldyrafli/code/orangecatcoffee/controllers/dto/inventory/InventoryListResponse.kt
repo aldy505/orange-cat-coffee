@@ -1,4 +1,4 @@
-package com.reinaldyrafli.code.orangecatcoffee.controllers.dto
+package com.reinaldyrafli.code.orangecatcoffee.controllers.dto.inventory
 
 import com.reinaldyrafli.code.orangecatcoffee.primitives.Catalog
 import com.reinaldyrafli.code.orangecatcoffee.primitives.Product
